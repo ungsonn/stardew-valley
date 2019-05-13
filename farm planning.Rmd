@@ -28,6 +28,8 @@ crops <- read.csv(
   stringsAsFactors = TRUE)
 
 colnames(crops)
+
+crops
 ```
 
 # Spring
@@ -37,13 +39,13 @@ What are the most profitable (by *gold per day*) spring crops?
 ```{r}
 crops %>%
   filter(season == "spring", 
-         crop_type == "fruit" | 
-           crop_type == "vegetable") %>% 
-  select(name = crop_name, 
-         type = crop_type, 
-         price = seed_price, 
-         gpd = gold_day, 
-         notes1:notes2) %>% 
+         type == "fruit" | 
+           type == "vegetable") %>% 
+  select(name, 
+         type, 
+         buy, 
+         gpd, 
+         note1:note2) %>% 
   arrange(desc(gpd))
 ```
 
@@ -63,7 +65,7 @@ crops %>%
 
 ```{r}
 PriceSeeds <- function(crop, n){
-  price <- crops[crops$crop_name == crop, "seed_price"]
+  price <- crops[crops$name == crop, "buy"]
   
   return(price * n)
 }

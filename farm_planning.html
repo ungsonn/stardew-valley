@@ -2755,7 +2755,7 @@ div.tocify {
 </div>
 
 
-<p><strong>Last updated:</strong> 2019-05-12 13:48:07</p>
+<p><strong>Last updated:</strong> 2019-05-12 20:43:32</p>
 <div id="prep" class="section level1">
 <h1>Prep</h1>
 <pre class="r"><code>require(tidyverse)
@@ -2766,24 +2766,26 @@ crops &lt;- read.csv(
   header = TRUE, 
   stringsAsFactors = TRUE)
 
-colnames(crops)</code></pre>
+colnames(crops)
+
+crops</code></pre>
 </div>
 <div id="spring" class="section level1">
 <h1>Spring</h1>
 <p>What are the most profitable (by <em>gold per day</em>) spring crops?</p>
 <pre class="r"><code>crops %&gt;%
   filter(season == &quot;spring&quot;, 
-         crop_type == &quot;fruit&quot; | 
-           crop_type == &quot;vegetable&quot;) %&gt;% 
-  select(name = crop_name, 
-         type = crop_type, 
-         price = seed_price, 
-         gpd = gold_day, 
-         notes1:notes2) %&gt;% 
+         type == &quot;fruit&quot; | 
+           type == &quot;vegetable&quot;) %&gt;% 
+  select(name, 
+         type, 
+         buy, 
+         gpd, 
+         note1:note2) %&gt;% 
   arrange(desc(gpd))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["price"],"name":[3],"type":["int"],"align":["right"]},{"label":["gpd"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["notes1"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["notes2"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"strawberry","2":"fruit","3":"100","4":"11.67","5":"egg festival","6":"NA"},{"1":"rhubarb","2":"fruit","3":"100","4":"9.23","5":"oasis","6":"NA"},{"1":"cauliflower","2":"vegetable","3":"80","4":"7.92","5":"","6":"NA"},{"1":"green bean","2":"vegetable","3":"60","4":"7.20","5":"","6":"NA"},{"1":"kale","2":"vegetable","3":"70","4":"6.67","5":"","6":"NA"},{"1":"garlic","2":"vegetable","3":"40","4":"5.00","5":"","6":"NA"},{"1":"potato","2":"vegetable","3":"50","4":"5.00","5":"","6":"NA"},{"1":"parsnip","2":"vegetable","3":"20","4":"3.75","5":"","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["type"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["buy"],"name":[3],"type":["int"],"align":["right"]},{"label":["gpd"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["note1"],"name":[5],"type":["fctr"],"align":["left"]},{"label":["note2"],"name":[6],"type":["lgl"],"align":["right"]}],"data":[{"1":"strawberry","2":"fruit","3":"100","4":"11.67","5":"egg festival","6":"NA"},{"1":"rhubarb","2":"fruit","3":"100","4":"9.23","5":"oasis","6":"NA"},{"1":"cauliflower","2":"vegetable","3":"80","4":"7.92","5":"","6":"NA"},{"1":"green bean","2":"vegetable","3":"60","4":"7.20","5":"","6":"NA"},{"1":"kale","2":"vegetable","3":"70","4":"6.67","5":"","6":"NA"},{"1":"garlic","2":"vegetable","3":"40","4":"5.00","5":"","6":"NA"},{"1":"potato","2":"vegetable","3":"50","4":"5.00","5":"","6":"NA"},{"1":"parsnip","2":"vegetable","3":"20","4":"3.75","5":"","6":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p><strong>Going to try and plant the following in 2nd Spring:</strong></p>
@@ -2799,7 +2801,7 @@ colnames(crops)</code></pre>
 </ul>
 <p><strong>how much will it cost?</strong></p>
 <pre class="r"><code>PriceSeeds &lt;- function(crop, n){
-  price &lt;- crops[crops$crop_name == crop, &quot;seed_price&quot;]
+  price &lt;- crops[crops$name == crop, &quot;buy&quot;]
   
   return(price * n)
 }</code></pre>

@@ -1,4 +1,4 @@
-season,harvest_type,crop_name,crop_type,seed_price,days_grow,days_regrow,max_harvests,gold_day,notes1,notes2
+season,harvest,name,type,buy,grow,regrow,max_harvest,gpd,note1,note2
 spring,single,blue jazz,flower,30,7,0,3,2.86,,
 spring,single,cauliflower,vegetable,80,12,0,2,7.92,,
 spring,single,garlic,vegetable,40,4,0,6,5,,
