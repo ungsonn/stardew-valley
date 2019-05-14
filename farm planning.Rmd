@@ -8,6 +8,8 @@ output: rmarkdown::github_document
 
 # Prep
 
+Load data:
+
 ```{r eval = TRUE, echo = TRUE, message = FALSE, results = 'hide', warning = FALSE}
 require(tidyverse)
 require(here)
@@ -16,19 +18,20 @@ crops <- read.csv(
   here("crops.csv"), 
   header = TRUE, 
   stringsAsFactors = TRUE)
+```
 
-print(colnames(crops))
+# Spring
 
+What are all the crops available in spring:
+```{r}
 crops %>% 
   filter(season == "spring") %>% 
   select(name:note2) %>% 
   print()
 ```
 
-# Spring
 
-What are the most profitable (by *gold per day*) spring crops?
-
+What are the most *profitable* (by gold per day) spring crops?
 ```{r}
 crops %>%
   filter(season == "spring", 
