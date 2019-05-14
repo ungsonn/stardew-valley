@@ -1,14 +1,12 @@
----
-title: "Stardew Valley: Farm Planning"
-author: "Nick D. Ungson"
-output: rmarkdown::github_document
----
+Stardew Valley: Farm Planning
+================
+Nick D. Ungson
 
-**Last updated:** `r Sys.time()`
+**Last updated:** 2019-05-14 13:31:25
 
 # Prep
 
-```{r eval = TRUE, echo = TRUE, message = FALSE, results = 'hide', warning = FALSE}
+``` r
 require(tidyverse)
 require(here)
 
@@ -26,7 +24,7 @@ crops
 
 What are the most profitable (by *gold per day*) spring crops?
 
-```{r}
+``` r
 crops %>%
   filter(season == "spring", 
          type == "fruit" | 
@@ -39,21 +37,37 @@ crops %>%
   arrange(desc(gpd))
 ```
 
+    ##          name      type buy   gpd        note1 note2
+    ## 1  strawberry     fruit 100 11.67 egg festival    NA
+    ## 2     rhubarb     fruit 100  9.23        oasis    NA
+    ## 3 cauliflower vegetable  80  7.92                 NA
+    ## 4  green bean vegetable  60  7.20                 NA
+    ## 5        kale vegetable  70  6.67                 NA
+    ## 6      garlic vegetable  40  5.00                 NA
+    ## 7      potato vegetable  50  5.00                 NA
+    ## 8     parsnip vegetable  20  3.75                 NA
+
 **Going to try and plant the following in 2nd Spring:**
 
-* 32 cauliflower
-* 16 kale
-* 16 potato
-* 16 garlic
-* 16 parsnip
-* 32 green beans
+  - 32 cauliflower
 
-* 8 blue jazz
-* 8 tulip
+  - 16 kale
+
+  - 16 potato
+
+  - 16 garlic
+
+  - 16 parsnip
+
+  - 32 green beans
+
+  - 8 blue jazz
+
+  - 8 tulip
 
 **how much will it cost?**
 
-```{r}
+``` r
 PriceSeeds <- function(crop, n){
   price <- crops[crops$name == crop, "buy"]
   
@@ -62,7 +76,8 @@ PriceSeeds <- function(crop, n){
 ```
 
 On **Spring 1**, you need:
-```{r}
+
+``` r
 PriceSeeds("cauliflower", 32) + 
   PriceSeeds("green bean", 32) + 
   PriceSeeds("kale", 16) + 
@@ -73,4 +88,4 @@ PriceSeeds("cauliflower", 32) +
   PriceSeeds("tulip", 8)
 ```
 
-
+    ## [1] 7760
