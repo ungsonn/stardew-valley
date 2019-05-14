@@ -6,10 +6,11 @@ output: rmarkdown::github_document
 
 **Last updated:** `r Sys.time()`
 
+All data below from the [Stardew Valley Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
+
 # Prep
 
 Load data:
-
 ```{r eval = TRUE, echo = TRUE, message = FALSE, results = 'hide', warning = FALSE}
 require(tidyverse)
 require(here)
@@ -22,7 +23,8 @@ crops <- read.csv(
 
 # Spring
 
-What are all the crops available in spring:
+What are all the crops available in [Spring](https://stardewvalleywiki.com/Spring)?
+
 ```{r}
 crops %>% 
   filter(season == "spring") %>% 
@@ -31,7 +33,7 @@ crops %>%
 ```
 
 
-What are the most *profitable* (by gold per day) spring crops?
+What are the most *profitable* (by gold per day) Spring crops?
 ```{r}
 crops %>%
   filter(season == "spring", 
@@ -45,7 +47,7 @@ crops %>%
   arrange(desc(gpd))
 ```
 
-**Planning:** Going to try and plant the following in 2nd Spring...
+**Planning:** I want to plant the following in on the first day of Spring...
 
 * 32 cauliflower
 * 16 kale

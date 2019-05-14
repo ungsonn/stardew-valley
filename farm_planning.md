@@ -2,7 +2,10 @@ Stardew Valley: Farm Planning
 ================
 Nick D. Ungson
 
-**Last updated:** 2019-05-14 13:40:32
+**Last updated:** 2019-05-14 13:44:37
+
+All data below from the [Stardew Valley
+Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
 
 # Prep
 
@@ -20,7 +23,8 @@ crops <- read.csv(
 
 # Spring
 
-What are all the crops available in spring:
+What are all the crops available in
+[Spring](https://stardewvalleywiki.com/Spring)?
 
 ``` r
 crops %>% 
@@ -54,7 +58,7 @@ crops %>%
     ## 10    NA
     ## 11    NA
 
-What are the most *profitable* (by gold per day) spring crops?
+What are the most *profitable* (by gold per day) Spring crops?
 
 ``` r
 crops %>%
@@ -79,7 +83,8 @@ crops %>%
     ## 7      potato vegetable  50  5.00                 NA
     ## 8     parsnip vegetable  20  3.75                 NA
 
-**Planning:** Going to try and plant the following in 2nd Spring…
+**Planning:** I want to plant the following in on the first day of
+Spring…
 
   - 32 cauliflower
   - 16 kale
