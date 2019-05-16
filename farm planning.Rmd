@@ -36,13 +36,11 @@ crops %>%
 What are the most *profitable* (by gold per day) Spring crops?
 ```{r}
 crops %>%
-  filter(season == "spring", 
-         type == "fruit" | 
-           type == "vegetable") %>% 
+  filter(season == "spring") %>% 
   select(name, 
-         type, 
+         gpd,
          buy, 
-         gpd, 
+         type, 
          note1:note2) %>% 
   arrange(desc(gpd))
 ```
@@ -88,3 +86,29 @@ print(paste("On Spring 1, you need $", spring_money, sep = ""))
 
 
 
+
+
+# Summer
+
+What are all the crops available in [Summer](https://stardewvalleywiki.com/Summer)?
+
+```{r}
+crops %>% 
+  filter(season == "summer") %>% 
+  select(name:note2) %>% 
+  arrange(desc(type)) %>% 
+  print()
+```
+
+
+What are the most *profitable* (by gold per day) summer crops?
+```{r}
+crops %>%
+  filter(season == "summer") %>% 
+  select(name, 
+         gpd,
+         buy, 
+         type, 
+         note1:note2) %>% 
+  arrange(desc(gpd))
+```
