@@ -2,7 +2,7 @@ Stardew Valley: Farm Planning
 ================
 Nick D. Ungson
 
-**Last updated:** 2019-05-16 19:28:16
+**Last updated:** 2019-05-17 08:09:46
 
 All data below from the [Stardew Valley
 Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
@@ -179,25 +179,24 @@ What are the most *profitable* (by gold per day) summer crops?
 crops %>%
   filter(season == "summer") %>% 
   select(name, 
-         gpd,
-         buy, 
-         type, 
-         note1:note2) %>% 
+         gpd, 
+         grow, regrow, max_harvest, 
+         type) %>% 
   arrange(desc(gpd))
 ```
 
-    ##              name    gpd  buy      type          note1          note2
-    ## 1       starfruit  26.92  400     fruit          oasis               
-    ## 2          coffee  23.00 2500      crop traveling cart spring, summer
-    ## 3       blueberry  20.80   80     fruit                              
-    ## 4     red cabbage  17.78  100 vegetable                              
-    ## 5           melon  14.17   80     fruit                              
-    ## 6            hops  13.52   60 vegetable                              
-    ## 7      hot pepper  10.77   40 vegetable                              
-    ## 8          tomato   9.26   50 vegetable                              
-    ## 9          radish   8.33   40 vegetable                              
-    ## 10           corn   7.41  150 vegetable spring, summer               
-    ## 11          poppy   5.71  100    flower                              
-    ## 12 summer spangle   5.00   50    flower                              
-    ## 13          wheat   3.75   10 vegetable   summer, fall               
-    ## 14      sunflower -15.00  200    flower   summer, fall
+    ##              name    gpd grow regrow max_harvest      type
+    ## 1       starfruit  26.92   13      0           2     fruit
+    ## 2          coffee  23.00   10      2           9      crop
+    ## 3       blueberry  20.80   13      4           4     fruit
+    ## 4     red cabbage  17.78    9      0           3 vegetable
+    ## 5           melon  14.17   12      0           2     fruit
+    ## 6            hops  13.52   11      1          17 vegetable
+    ## 7      hot pepper  10.77    5      3           8 vegetable
+    ## 8          tomato   9.26   11      4           5 vegetable
+    ## 9          radish   8.33    6      0           4 vegetable
+    ## 10           corn   7.41   14      4           4 vegetable
+    ## 11          poppy   5.71    7      0           3    flower
+    ## 12 summer spangle   5.00    8      0           3    flower
+    ## 13          wheat   3.75    4      0           6 vegetable
+    ## 14      sunflower -15.00    8      0           3    flower
