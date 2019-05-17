@@ -8,7 +8,7 @@ output: rmarkdown::github_document
 
 All data below from the [Stardew Valley Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
 
-# Prep
+# prep
 
 Load data:
 ```{r eval = TRUE, echo = TRUE, message = FALSE, results = 'hide', warning = FALSE}
@@ -21,31 +21,56 @@ crops <- read.csv(
   stringsAsFactors = TRUE)
 ```
 
-# Spring
-
-What are all the crops available in [Spring](https://stardewvalleywiki.com/Spring)?
-
+Some functions:
+**What crops are available in a season?**
 ```{r}
-crops %>% 
-  filter(season == "spring") %>% 
-  select(name:note2) %>% 
-  print()
+List <- function(season){
+  crops %>% 
+    filter(season == paste(season)) %>% 
+    select(name, 
+           type) %>% 
+    arrange(desc(type)) %>% 
+    return()
+}
 ```
 
-
-What are the most *profitable* (by gold per day) Spring crops?
+**What are the most profitable crops?** (measured in gold per day)
 ```{r}
-crops %>%
-  filter(season == "spring") %>% 
-  select(name, 
-         gpd,
-         buy, 
-         type, 
+GPD <- function(season){
+  crops %>%
+  filter(season == paste(season)) %>% 
+  select(gpd, 
+         name, 
+         grow:regrow, 
          note1:note2) %>% 
   arrange(desc(gpd))
+}
 ```
 
-**Planning:** I want to plant the following in on the first day of Spring...
+**Cost Estimate**: How much do *n* seeds of a crop cost?
+```{r}
+Price <- function(crop, n){
+  price <- crops[crops$name == crop, "buy"]
+  return(price * n)
+}
+```
+
+# spring
+
+What are all the crops available in [spring](https://stardewvalleywiki.com/spring)?
+
+```{r}
+List(spring)
+```
+
+Most valuable?
+```{r}
+GPD(spring)
+```
+
+## planning
+
+I want to plant the following in on the first day of spring...
 
 * 32 cauliflower
 * 16 kale
@@ -56,58 +81,32 @@ crops %>%
 * 8 blue jazz
 * 8 tulip
 
-**Cost Estimate**: How much money do I need on Spring 1 to buy all the seeds I want?
-
-First, I wrote a function that will multiply the amount of seeds by the price of those seeds:
-```{r}
-PriceSeeds <- function(crop, n){
-  price <- crops[crops$name == crop, "buy"]
-  
-  return(price * n)
-}
-```
-
-
 Then, I passed each crop and # of seeds and summed them all:
 ```{r}
-spring_money <- PriceSeeds("cauliflower", 32) + 
-  PriceSeeds("green bean", 32) + 
-  PriceSeeds("kale", 16) + 
-  PriceSeeds("potato", 16) + 
-  PriceSeeds("garlic", 16) + 
-  PriceSeeds("parsnip", 16) + 
-  PriceSeeds("blue jazz", 8) + 
-  PriceSeeds("tulip", 8)
+spring_cost <- Price("cauliflower", 32) + 
+  Price("green bean", 32) + 
+  Price("kale", 16) + 
+  Price("potato", 16) + 
+  Price("garlic", 16) + 
+  Price("parsnip", 16) + 
+  Price("blue jazz", 8) + 
+  Price("tulip", 8)
 ```
 
 ```{r}
-print(paste("On Spring 1, you need $", spring_money, sep = ""))
+print(paste("On spring 1, you need $", spring_cost, sep = ""))
 ```
 
+# summer
 
-
-
-
-# Summer
-
-What are all the crops available in [Summer](https://stardewvalleywiki.com/Summer)?
+What are all the crops available in [summer](https://stardewvalleywiki.com/summer)?
 
 ```{r}
-crops %>% 
-  filter(season == "summer") %>% 
-  select(name:note2) %>% 
-  arrange(desc(type)) %>% 
-  print()
+List(summer)
 ```
 
+Most valuable?
 
-What are the most *profitable* (by gold per day) summer crops?
 ```{r}
-crops %>%
-  filter(season == "summer") %>% 
-  select(name, 
-         gpd, 
-         grow, regrow, max_harvest, 
-         type) %>% 
-  arrange(desc(gpd))
+GPD(summer)
 ```
