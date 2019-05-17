@@ -24,9 +24,9 @@ crops <- read.csv(
 Some functions:
 **What crops are available in a season?**
 ```{r}
-List <- function(season){
+List <- function(season_name){
   crops %>% 
-    filter(season == paste(season)) %>% 
+    filter(season == season_name) %>% 
     select(name, 
            type) %>% 
     arrange(desc(type)) %>% 
@@ -36,9 +36,9 @@ List <- function(season){
 
 **What are the most profitable crops?** (measured in gold per day)
 ```{r}
-GPD <- function(season){
+GPD <- function(season_name){
   crops %>%
-  filter(season == paste(season)) %>% 
+  filter(season == season_name) %>% 
   select(gpd, 
          name, 
          grow:regrow, 
@@ -60,12 +60,12 @@ Price <- function(crop, n){
 What are all the crops available in [spring](https://stardewvalleywiki.com/spring)?
 
 ```{r}
-List(spring)
+List("spring")
 ```
 
 Most valuable?
 ```{r}
-GPD(spring)
+GPD("spring")
 ```
 
 ## planning
@@ -102,11 +102,11 @@ print(paste("On spring 1, you need $", spring_cost, sep = ""))
 What are all the crops available in [summer](https://stardewvalleywiki.com/summer)?
 
 ```{r}
-List(summer)
+List("summer")
 ```
 
 Most valuable?
 
 ```{r}
-GPD(summer)
+GPD("summer")
 ```

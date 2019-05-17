@@ -2,7 +2,7 @@ Stardew Valley: Farm Planning
 ================
 Nick D. Ungson
 
-**Last updated:** 2019-05-17 14:20:32
+**Last updated:** 2019-05-17 14:28:36
 
 All data below from the [Stardew Valley
 Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
@@ -24,9 +24,9 @@ crops <- read.csv(
 Some functions: **What crops are available in a season?**
 
 ``` r
-List <- function(season){
+List <- function(season_name){
   crops %>% 
-    filter(season == paste(season)) %>% 
+    filter(season == season_name) %>% 
     select(name, 
            type) %>% 
     arrange(desc(type)) %>% 
@@ -37,9 +37,9 @@ List <- function(season){
 **What are the most profitable crops?** (measured in gold per day)
 
 ``` r
-GPD <- function(season){
+GPD <- function(season_name){
   crops %>%
-  filter(season == paste(season)) %>% 
+  filter(season == season_name) %>% 
   select(gpd, 
          name, 
          grow:regrow, 
@@ -63,69 +63,40 @@ What are all the crops available in
 [spring](https://stardewvalleywiki.com/spring)?
 
 ``` r
-List(spring)
+List("spring")
 ```
 
-    ##              name      type
-    ## 1     cauliflower vegetable
-    ## 2          garlic vegetable
-    ## 3            kale vegetable
-    ## 4         parsnip vegetable
-    ## 5          potato vegetable
-    ## 6      green bean vegetable
-    ## 7          radish vegetable
-    ## 8     red cabbage vegetable
-    ## 9           wheat vegetable
-    ## 10           corn vegetable
-    ## 11           hops vegetable
-    ## 12     hot pepper vegetable
-    ## 13         tomato vegetable
-    ## 14        rhubarb     fruit
-    ## 15     strawberry     fruit
-    ## 16          melon     fruit
-    ## 17      starfruit     fruit
-    ## 18      blueberry     fruit
-    ## 19      blue jazz    flower
-    ## 20          tulip    flower
-    ## 21          poppy    flower
-    ## 22 summer spangle    flower
-    ## 23      sunflower    flower
-    ## 24         coffee      crop
-    ## 25         coffee      crop
+    ##           name      type
+    ## 1  cauliflower vegetable
+    ## 2       garlic vegetable
+    ## 3         kale vegetable
+    ## 4      parsnip vegetable
+    ## 5       potato vegetable
+    ## 6   green bean vegetable
+    ## 7      rhubarb     fruit
+    ## 8   strawberry     fruit
+    ## 9    blue jazz    flower
+    ## 10       tulip    flower
+    ## 11      coffee      crop
 
-Most
-    valuable?
+Most valuable?
 
 ``` r
-GPD(spring)
+GPD("spring")
 ```
 
-    ##       gpd           name grow regrow          note1          note2
-    ## 1   26.92      starfruit   13      0          oasis               
-    ## 2   23.00         coffee   10      2 traveling cart spring, summer
-    ## 3   23.00         coffee   10      2 traveling cart spring, summer
-    ## 4   20.80      blueberry   13      4                              
-    ## 5   17.78    red cabbage    9      0                              
-    ## 6   14.17          melon   12      0                              
-    ## 7   13.52           hops   11      1                              
-    ## 8   11.67     strawberry    8      4   egg festival               
-    ## 9   10.77     hot pepper    5      3                              
-    ## 10   9.26         tomato   11      4                              
-    ## 11   9.23        rhubarb   13      0          oasis               
-    ## 12   8.33         radish    6      0                              
-    ## 13   7.92    cauliflower   12      0                              
-    ## 14   7.41           corn   14      4 spring, summer               
-    ## 15   7.20     green bean   10      3                              
-    ## 16   6.67           kale    6      0                              
-    ## 17   5.71          poppy    7      0                              
-    ## 18   5.00         garlic    4      0                              
-    ## 19   5.00         potato    6      0                              
-    ## 20   5.00 summer spangle    8      0                              
-    ## 21   3.75        parsnip    4      0                              
-    ## 22   3.75          wheat    4      0   summer, fall               
-    ## 23   2.86      blue jazz    7      0                              
-    ## 24   1.67          tulip    6      0                              
-    ## 25 -15.00      sunflower    8      0   summer, fall
+    ##      gpd        name grow regrow          note1          note2
+    ## 1  23.00      coffee   10      2 traveling cart spring, summer
+    ## 2  11.67  strawberry    8      4   egg festival               
+    ## 3   9.23     rhubarb   13      0          oasis               
+    ## 4   7.92 cauliflower   12      0                              
+    ## 5   7.20  green bean   10      3                              
+    ## 6   6.67        kale    6      0                              
+    ## 7   5.00      garlic    4      0                              
+    ## 8   5.00      potato    6      0                              
+    ## 9   3.75     parsnip    4      0                              
+    ## 10  2.86   blue jazz    7      0                              
+    ## 11  1.67       tulip    6      0
 
 ## planning
 
@@ -165,66 +136,44 @@ What are all the crops available in
 [summer](https://stardewvalleywiki.com/summer)?
 
 ``` r
-List(summer)
+List("summer")
 ```
 
     ##              name      type
-    ## 1     cauliflower vegetable
-    ## 2          garlic vegetable
-    ## 3            kale vegetable
-    ## 4         parsnip vegetable
-    ## 5          potato vegetable
-    ## 6      green bean vegetable
-    ## 7          radish vegetable
-    ## 8     red cabbage vegetable
-    ## 9           wheat vegetable
-    ## 10           corn vegetable
-    ## 11           hops vegetable
-    ## 12     hot pepper vegetable
-    ## 13         tomato vegetable
-    ## 14        rhubarb     fruit
-    ## 15     strawberry     fruit
-    ## 16          melon     fruit
-    ## 17      starfruit     fruit
-    ## 18      blueberry     fruit
-    ## 19      blue jazz    flower
-    ## 20          tulip    flower
-    ## 21          poppy    flower
-    ## 22 summer spangle    flower
-    ## 23      sunflower    flower
-    ## 24         coffee      crop
-    ## 25         coffee      crop
+    ## 1          radish vegetable
+    ## 2     red cabbage vegetable
+    ## 3           wheat vegetable
+    ## 4            corn vegetable
+    ## 5            hops vegetable
+    ## 6      hot pepper vegetable
+    ## 7          tomato vegetable
+    ## 8           melon     fruit
+    ## 9       starfruit     fruit
+    ## 10      blueberry     fruit
+    ## 11          poppy    flower
+    ## 12 summer spangle    flower
+    ## 13      sunflower    flower
+    ## 14         coffee      crop
 
 Most
     valuable?
 
 ``` r
-GPD(summer)
+GPD("summer")
 ```
 
     ##       gpd           name grow regrow          note1          note2
     ## 1   26.92      starfruit   13      0          oasis               
     ## 2   23.00         coffee   10      2 traveling cart spring, summer
-    ## 3   23.00         coffee   10      2 traveling cart spring, summer
-    ## 4   20.80      blueberry   13      4                              
-    ## 5   17.78    red cabbage    9      0                              
-    ## 6   14.17          melon   12      0                              
-    ## 7   13.52           hops   11      1                              
-    ## 8   11.67     strawberry    8      4   egg festival               
-    ## 9   10.77     hot pepper    5      3                              
-    ## 10   9.26         tomato   11      4                              
-    ## 11   9.23        rhubarb   13      0          oasis               
-    ## 12   8.33         radish    6      0                              
-    ## 13   7.92    cauliflower   12      0                              
-    ## 14   7.41           corn   14      4 spring, summer               
-    ## 15   7.20     green bean   10      3                              
-    ## 16   6.67           kale    6      0                              
-    ## 17   5.71          poppy    7      0                              
-    ## 18   5.00         garlic    4      0                              
-    ## 19   5.00         potato    6      0                              
-    ## 20   5.00 summer spangle    8      0                              
-    ## 21   3.75        parsnip    4      0                              
-    ## 22   3.75          wheat    4      0   summer, fall               
-    ## 23   2.86      blue jazz    7      0                              
-    ## 24   1.67          tulip    6      0                              
-    ## 25 -15.00      sunflower    8      0   summer, fall
+    ## 3   20.80      blueberry   13      4                              
+    ## 4   17.78    red cabbage    9      0                              
+    ## 5   14.17          melon   12      0                              
+    ## 6   13.52           hops   11      1                              
+    ## 7   10.77     hot pepper    5      3                              
+    ## 8    9.26         tomato   11      4                              
+    ## 9    8.33         radish    6      0                              
+    ## 10   7.41           corn   14      4 spring, summer               
+    ## 11   5.71          poppy    7      0                              
+    ## 12   5.00 summer spangle    8      0                              
+    ## 13   3.75          wheat    4      0   summer, fall               
+    ## 14 -15.00      sunflower    8      0   summer, fall
