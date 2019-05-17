@@ -2,7 +2,7 @@ Stardew Valley: Farm Planning
 ================
 Nick D. Ungson
 
-**Last updated:** 2019-05-17 14:28:36
+**Last updated:** 2019-05-17 14:43:24
 
 All data below from the [Stardew Valley
 Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
@@ -172,8 +172,32 @@ GPD("summer")
     ## 7   10.77     hot pepper    5      3                              
     ## 8    9.26         tomato   11      4                              
     ## 9    8.33         radish    6      0                              
-    ## 10   7.41           corn   14      4 spring, summer               
+    ## 10   7.41           corn   14      4   summer, fall               
     ## 11   5.71          poppy    7      0                              
     ## 12   5.00 summer spangle    8      0                              
     ## 13   3.75          wheat    4      0   summer, fall               
     ## 14 -15.00      sunflower    8      0   summer, fall
+
+## planning
+
+…
+
+``` r
+summer_cost <- 
+  Price("blueberry", 16) + 
+  Price("red cabbage", 64) + 
+  Price("melon", 46) + 
+  Price("hops", 32) + 
+  Price("hot pepper", 24) + 
+  Price("tomato", 7) + 
+  Price("radish", 7) + 
+  Price("sunflower", 16) + 
+  Price("wheat", 16) + 
+  Price("corn", 16)
+```
+
+``` r
+print(paste("On summer 1, you need $", summer_cost, sep = ""))
+```
+
+    ## [1] "On summer 1, you need $20630"

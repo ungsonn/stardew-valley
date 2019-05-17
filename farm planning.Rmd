@@ -110,3 +110,26 @@ Most valuable?
 ```{r}
 GPD("summer")
 ```
+
+## planning
+...
+
+```{r}
+summer_cost <- 
+  Price("blueberry", 16) + 
+  Price("red cabbage", 64) + 
+  Price("melon", 46) + 
+  Price("hops", 32) + 
+  Price("hot pepper", 24) + 
+  Price("tomato", 7) + 
+  Price("radish", 7) + 
+  Price("sunflower", 16) + 
+  Price("wheat", 16) + 
+  Price("corn", 16)
+```
+
+```{r}
+print(paste("On summer 1, you need $", summer_cost, sep = ""))
+```
+
+
