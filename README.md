@@ -1,3 +1,3 @@
 # stardew-valley
 
-[farm planning](https://github.com/ungsonn/stardew-valley/blob/master/farm_planning.html)
+[farm planning](http://htmlpreview.github.com/?https://github.com/ungsonn/stardew-valley/blob/master/farm_planning.html)
