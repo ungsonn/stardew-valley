@@ -153,11 +153,11 @@ print(paste("On summer 1, you need $", summer_cost, sep = ""))
 
 What are all the crops available in [fall](https://stardewvalleywiki.com/fall)?
 
-```{r}
+```{r eval = FALSE}
 List("fall")
 ```
 
-```{r eval = FALSE}
+```{r eval = TRUE}
 datatable(crops, rownames = FALSE, 
           filter = "top", 
           options = list(pageLength = 20, 
