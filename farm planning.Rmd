@@ -1,10 +1,18 @@
 ---
 title: "Stardew Valley: Farm Planning"
 author: "Nick D. Ungson"
-output: html_document
+self_contained: false
+output:
+  html_document:
+    highlight: haddock
+    toc: true
+    toc_depth: 2
+    toc_float: 
+      collapsed: false
+      smooth_scroll: false
+    df_print: paged
 ---
 
-rmarkdown::github_document
 **Last updated:** `r Sys.time()`
 
 All data below from the [Stardew Valley Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
@@ -16,6 +24,9 @@ Load data:
 require(tidyverse)
 require(here)
 require(DT)
+
+#rmarkdown::github_document
+
 
 crops <- read.csv(
   here("crops.csv"), 
