@@ -43,7 +43,7 @@ GPD <- function(season_name){
   select(gpd, 
          name, 
          grow:regrow, 
-         note1:note2) %>% 
+         max_harvest) %>% 
   arrange(desc(gpd))
 }
 ```
@@ -142,6 +142,10 @@ print(paste("On summer 1, you need $", summer_cost, sep = ""))
 What are all the crops available in [fall](https://stardewvalleywiki.com/fall)?
 
 ```{r}
+List("fall")
+```
+
+```{r eval = FALSE}
 datatable(crops, rownames = FALSE, 
           filter = "top", 
           options = list(pageLength = 20, 
