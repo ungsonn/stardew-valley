@@ -1,9 +1,10 @@
 ---
 title: "Stardew Valley: Farm Planning"
 author: "Nick D. Ungson"
-output: rmarkdown::github_document
+output: html_document
 ---
 
+rmarkdown::github_document
 **Last updated:** `r Sys.time()`
 
 All data below from the [Stardew Valley Wiki](https://stardewvalleywiki.com/Stardew_Valley_Wiki)
