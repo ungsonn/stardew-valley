@@ -14,6 +14,7 @@ Load data:
 ```{r eval = TRUE, echo = TRUE, message = FALSE, results = 'hide', warning = FALSE}
 require(tidyverse)
 require(here)
+require(DT)
 
 crops <- read.csv(
   here("crops.csv"), 
@@ -114,6 +115,7 @@ GPD("summer")
 ## planning
 ...
 
+
 ```{r}
 summer_cost <- 
   Price("blueberry", 16) + 
@@ -132,4 +134,60 @@ summer_cost <-
 print(paste("On summer 1, you need $", summer_cost, sep = ""))
 ```
 
+
+
+
+# fall
+
+What are all the crops available in [fall](https://stardewvalleywiki.com/fall)?
+
+```{r}
+datatable(crops, rownames = FALSE, 
+          filter = "top", 
+          options = list(pageLength = 20, 
+                         scrollX = TRUE))
+```
+
+Most valuable?
+
+```{r}
+GPD("fall")
+```
+
+## planning
+...
+
+```{r}
+fall_cost <- 
+  Price("pumpkin", (32 * 3)) + 
+  Price("artichoke", 64) + 
+  Price("beet", 64) + 
+  Price("cranberry", 64) + 
+  Price("grape", 64) + 
+  Price("amaranth", 16) + 
+  Price("yam", 16) + 
+  Price("eggplant", 16) + 
+  Price("bok choy", 16)
+```
+
+
+```{r}
+print(paste("On fall 1, you need $", fall_cost, sep = ""))
+```
+
+
+```{r}
+fall_cost_all <- 
+  Price("pumpkin", (32 * 3 * 2)) + 
+  Price("artichoke", (64 * 3)) + 
+  Price("beet", 64) + 
+  Price("cranberry", 64) + 
+  Price("grape", 64) + 
+  Price("amaranth", (16 * 3)) + 
+  Price("yam", (16 * 2)) + 
+  Price("eggplant", 16) + 
+  Price("bok choy", (16 * 6))
+
+print(paste("On for entire fall, you need $", fall_cost_all, sep = ""))
+```
 
